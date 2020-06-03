@@ -1,0 +1,203 @@
+{
+  "van-action-sheet": {
+    "attributes": []
+  },
+  "van-address-edit": {
+    "attributes": []
+  },
+  "van-address-list": {
+    "attributes": []
+  },
+  "van-area": {
+    "attributes": []
+  },
+  "van-button": {
+    "attributes": []
+  },
+  "van-calendar": {
+    "attributes": []
+  },
+  "van-card": {
+    "attributes": []
+  },
+  "van-cell": {
+    "attributes": []
+  },
+  "van-checkbox": {
+    "attributes": []
+  },
+  "van-circle": {
+    "attributes": []
+  },
+  "van-layout": {
+    "attributes": []
+  },
+  "van-collapse": {
+    "attributes": []
+  },
+  "van-contact": {
+    "attributes": []
+  },
+  "van-count-down": {
+    "attributes": []
+  },
+  "van-coupon": {
+    "attributes": []
+  },
+  "van-datetime-picker": {
+    "attributes": []
+  },
+  "van-dialog": {
+    "attributes": []
+  },
+  "van-divider": {
+    "attributes": []
+  },
+  "van-dropdown-menu": {
+    "attributes": []
+  },
+  "van-empty": {
+    "attributes": []
+  },
+  "van-field": {
+    "attributes": []
+  },
+  "van-form": {
+    "attributes": []
+  },
+  "van-goods-action": {
+    "attributes": []
+  },
+  "van-grid": {
+    "attributes": []
+  },
+  "van-icon": {
+    "attributes": []
+  },
+  "van-image": {
+    "attributes": []
+  },
+  "van-image-preview": {
+    "attributes": []
+  },
+  "van-index-bar": {
+    "attributes": []
+  },
+  "van-lazyload": {
+    "attributes": []
+  },
+  "van-list": {
+    "attributes": []
+  },
+  "van-loading": {
+    "attributes": []
+  },
+  "van-国际化\r": {
+    "attributes": []
+  },
+  "van-nav-bar": {
+    "attributes": []
+  },
+  "van-notice-bar": {
+    "attributes": []
+  },
+  "van-notify": {
+    "attributes": []
+  },
+  "van-number-keyboard": {
+    "attributes": []
+  },
+  "van-overlay": {
+    "attributes": []
+  },
+  "van-pagination": {
+    "attributes": []
+  },
+  "van-panel": {
+    "attributes": []
+  },
+  "van-password-input": {
+    "attributes": []
+  },
+  "van-picker": {
+    "attributes": []
+  },
+  "van-popup": {
+    "attributes": []
+  },
+  "van-progress": {
+    "attributes": []
+  },
+  "van-pull-refresh": {
+    "attributes": []
+  },
+  "van-radio": {
+    "attributes": []
+  },
+  "van-rate": {
+    "attributes": []
+  },
+  "van-search": {
+    "attributes": []
+  },
+  "van-share-sheet": {
+    "attributes": []
+  },
+  "van-sidebar": {
+    "attributes": []
+  },
+  "van-skeleton": {
+    "attributes": []
+  },
+  "van-sku": {
+    "attributes": []
+  },
+  "van-slider": {
+    "attributes": []
+  },
+  "van-stepper": {
+    "attributes": []
+  },
+  "van-steps": {
+    "attributes": []
+  },
+  "van-sticky": {
+    "attributes": []
+  },
+  "van-内置样式\r": {
+    "attributes": []
+  },
+  "van-submit-bar": {
+    "attributes": []
+  },
+  "van-swipe": {
+    "attributes": []
+  },
+  "van-swipe-cell": {
+    "attributes": []
+  },
+  "van-switch": {
+    "attributes": []
+  },
+  "van-switch-cell": {
+    "attributes": []
+  },
+  "van-tab": {
+    "attributes": []
+  },
+  "van-tabbar": {
+    "attributes": []
+  },
+  "van-tag": {
+    "attributes": []
+  },
+  "van-toast": {
+    "attributes": []
+  },
+  "van-tree-select": {
+    "attributes": []
+  },
+  "van-uploader": {
+    "attributes": []
+  }
+}
