@@ -1,7 +1,12 @@
-import _extends from "@babel/runtime/helpers/esm/extends";
+import _extends from '@babel/runtime/helpers/esm/extends';
 // Utils
 import { createNamespace, addUnit, noop, isPromise, isDef } from '../utils';
-import { toArray, readFile as _readFile, isOversize, isImageFile } from './utils'; // Mixins
+import {
+  toArray,
+  readFile as _readFile,
+  isOversize,
+  isImageFile,
+} from './utils'; // Mixins
 
 import { FieldMixin } from '../mixins/field'; // Components
 
@@ -11,14 +16,14 @@ import Loading from '../loading';
 import ImagePreview from '../image-preview';
 
 var _createNamespace = createNamespace('uploader'),
-    createComponent = _createNamespace[0],
-    bem = _createNamespace[1];
+  createComponent = _createNamespace[0],
+  bem = _createNamespace[1];
 
 export default createComponent({
   inheritAttrs: false,
   mixins: [FieldMixin],
   model: {
-    prop: 'fileList'
+    prop: 'fileList',
   },
   props: {
     disabled: Boolean,
@@ -30,54 +35,54 @@ export default createComponent({
     previewSize: [Number, String],
     name: {
       type: [Number, String],
-      default: ''
+      default: '',
     },
     accept: {
       type: String,
-      default: 'image/*'
+      default: 'image/*',
     },
     fileList: {
       type: Array,
       default: function _default() {
         return [];
-      }
+      },
     },
     maxSize: {
       type: [Number, String],
-      default: Number.MAX_VALUE
+      default: Number.MAX_VALUE,
     },
     maxCount: {
       type: [Number, String],
-      default: Number.MAX_VALUE
+      default: Number.MAX_VALUE,
     },
     deletable: {
       type: Boolean,
-      default: true
+      default: true,
     },
     showUpload: {
       type: Boolean,
-      default: true
+      default: true,
     },
     previewImage: {
       type: Boolean,
-      default: true
+      default: true,
     },
     previewFullImage: {
       type: Boolean,
-      default: true
+      default: true,
     },
     imageFit: {
       type: String,
-      default: 'cover'
+      default: 'cover',
     },
     resultType: {
       type: String,
-      default: 'dataUrl'
+      default: 'dataUrl',
     },
     uploadIcon: {
       type: String,
-      default: 'photograph'
-    }
+      default: 'photograph',
+    },
   },
   computed: {
     previewSizeWithUnit: function previewSizeWithUnit() {
@@ -86,7 +91,7 @@ export default createComponent({
     // for form
     value: function value() {
       return this.fileList;
-    }
+    },
   },
   methods: {
     getDetail: function getDetail(index) {
@@ -96,7 +101,7 @@ export default createComponent({
 
       return {
         name: this.name,
-        index: index
+        index: index,
       };
     },
     onChange: function onChange(event) {
@@ -119,13 +124,15 @@ export default createComponent({
         }
 
         if (isPromise(response)) {
-          response.then(function (data) {
-            if (data) {
-              _this.readFile(data);
-            } else {
-              _this.readFile(files);
-            }
-          }).catch(this.resetInput);
+          response
+            .then(function (data) {
+              if (data) {
+                _this.readFile(data);
+              } else {
+                _this.readFile(files);
+              }
+            })
+            .catch(this.resetInput);
           return;
         }
       }
@@ -144,14 +151,16 @@ export default createComponent({
           files = files.slice(0, maxCount);
         }
 
-        Promise.all(files.map(function (file) {
-          return _readFile(file, _this2.resultType);
-        })).then(function (contents) {
+        Promise.all(
+          files.map(function (file) {
+            return _readFile(file, _this2.resultType);
+          })
+        ).then(function (contents) {
           var fileList = files.map(function (file, index) {
             var result = {
               file: file,
               status: '',
-              message: ''
+              message: '',
             };
 
             if (contents[index]) {
@@ -168,7 +177,7 @@ export default createComponent({
           var result = {
             file: files,
             status: '',
-            message: ''
+            message: '',
           };
 
           if (content) {
@@ -207,7 +216,9 @@ export default createComponent({
         this.$emit('oversize', oversizeFiles, this.getDetail());
       }
 
-      var isValidFiles = Array.isArray(validFiles) ? Boolean(validFiles.length) : Boolean(validFiles);
+      var isValidFiles = Array.isArray(validFiles)
+        ? Boolean(validFiles.length)
+        : Boolean(validFiles);
 
       if (isValidFiles) {
         this.$emit('input', [].concat(this.fileList, toArray(validFiles)));
@@ -228,9 +239,11 @@ export default createComponent({
         }
 
         if (isPromise(response)) {
-          response.then(function () {
-            _this4.deleteFile(file, index);
-          }).catch(noop);
+          response
+            .then(function () {
+              _this4.deleteFile(file, index);
+            })
+            .catch(noop);
           return;
         }
       }
@@ -268,7 +281,7 @@ export default createComponent({
         startPosition: imageFiles.indexOf(item),
         onClose: function onClose() {
           _this5.$emit('close-preview');
-        }
+        },
       });
     },
     // @exposed-api
@@ -284,7 +297,6 @@ export default createComponent({
       }
       /* istanbul ignore else */
 
-
       if (this.$refs.input) {
         this.$refs.input.click();
       }
@@ -292,79 +304,119 @@ export default createComponent({
     genPreviewMask: function genPreviewMask(item) {
       var h = this.$createElement;
       var status = item.status,
-          message = item.message;
+        message = item.message;
 
       if (status === 'uploading' || status === 'failed') {
-        var MaskIcon = status === 'failed' ? h(Icon, {
-          "attrs": {
-            "name": "warning-o"
-          },
-          "class": bem('mask-icon')
-        }) : h(Loading, {
-          "class": bem('loading')
-        });
+        var MaskIcon =
+          status === 'failed'
+            ? h(Icon, {
+                attrs: {
+                  name: 'warning-o',
+                },
+                class: bem('mask-icon'),
+              })
+            : h(Loading, {
+                class: bem('loading'),
+              });
         var showMessage = isDef(message) && message !== '';
-        return h("div", {
-          "class": bem('mask')
-        }, [MaskIcon, showMessage && h("div", {
-          "class": bem('mask-message')
-        }, [message])]);
+        return h(
+          'div',
+          {
+            class: bem('mask'),
+          },
+          [
+            MaskIcon,
+            showMessage &&
+              h(
+                'div',
+                {
+                  class: bem('mask-message'),
+                },
+                [message]
+              ),
+          ]
+        );
       }
     },
     genPreviewItem: function genPreviewItem(item, index) {
       var _this6 = this;
 
       var h = this.$createElement;
-      var showDelete = item.status !== 'uploading' && this.deletable && !item.hideDelete;
-      var DeleteIcon = showDelete && h(Icon, {
-        "attrs": {
-          "name": "clear"
-        },
-        "class": bem('preview-delete'),
-        "on": {
-          "click": function click(event) {
-            event.stopPropagation();
 
-            _this6.onDelete(item, index);
-          }
-        }
-      });
-      var Preview = isImageFile(item) ? h(Image, {
-        "attrs": {
-          "fit": this.imageFit,
-          "src": item.content || item.url,
-          "width": this.previewSize,
-          "height": this.previewSize,
-          "lazyLoad": this.lazyLoad
+      if (item.hideImg) {
+        return h('div');
+      }
+
+      var showDelete =
+        item.status !== 'uploading' && this.deletable && !item.hideDelete;
+      var DeleteIcon =
+        showDelete &&
+        h(Icon, {
+          attrs: {
+            name: 'clear',
+          },
+          class: bem('preview-delete'),
+          on: {
+            click: function click(event) {
+              event.stopPropagation();
+
+              _this6.onDelete(item, index);
+            },
+          },
+        });
+      var Preview = isImageFile(item)
+        ? h(Image, {
+            attrs: {
+              fit: this.imageFit,
+              src: item.content || item.url,
+              width: this.previewSize,
+              height: this.previewSize,
+              lazyLoad: this.lazyLoad,
+            },
+            class: bem('preview-image'),
+            on: {
+              click: function click() {
+                _this6.onPreviewImage(item);
+              },
+            },
+          })
+        : h(
+            'div',
+            {
+              class: bem('file'),
+              style: {
+                width: this.previewSizeWithUnit,
+                height: this.previewSizeWithUnit,
+              },
+            },
+            [
+              h(Icon, {
+                class: bem('file-icon'),
+                attrs: {
+                  name: 'description',
+                },
+              }),
+              h(
+                'div',
+                {
+                  class: [bem('file-name'), 'van-ellipsis'],
+                },
+                [item.file ? item.file.name : item.url]
+              ),
+            ]
+          );
+      return h(
+        'div',
+        {
+          class: bem('preview'),
+          on: {
+            click: function click() {
+              _this6.$emit('click-preview', item, _this6.getDetail(index));
+            },
+          },
         },
-        "class": bem('preview-image'),
-        "on": {
-          "click": function click() {
-            _this6.onPreviewImage(item);
-          }
-        }
-      }) : h("div", {
-        "class": bem('file'),
-        "style": {
-          width: this.previewSizeWithUnit,
-          height: this.previewSizeWithUnit
-        }
-      }, [h(Icon, {
-        "class": bem('file-icon'),
-        "attrs": {
-          "name": "description"
-        }
-      }), h("div", {
-        "class": [bem('file-name'), 'van-ellipsis']
-      }, [item.file ? item.file.name : item.url])]);
-      return h("div", {
-        "class": bem('preview'),
-        "on": {
-          "click": function click() {
-            _this6.$emit('click-preview', item, _this6.getDetail(index));
-          }
-        }
-      }, [Preview, this.genPreviewMask(item), DeleteIcon]);
+        [Preview, this.genPreviewMask(item), DeleteIcon]
+      );
     },
     genPreviewList: function genPreviewList() {
       if (this.previewImage) {
@@ -379,23 +431,31 @@ export default createComponent({
       }
 
       var slot = this.slots();
-      var Input = h("input", {
-        "attrs": _extends(_extends({}, this.$attrs), {}, {
-          "type": "file",
-          "accept": this.accept,
-          "disabled": this.disabled
-        }),
-        "ref": "input",
-        "class": bem('input'),
-        "on": {
-          "change": this.onChange
-        }
+      var Input = h('input', {
+        attrs: _extends(
+          _extends({}, this.$attrs),
+          {},
+          {
+            type: 'file',
+            accept: this.accept,
+            disabled: this.disabled,
+          }
+        ),
+        ref: 'input',
+        class: bem('input'),
+        on: {
+          change: this.onChange,
+        },
       });
 
       if (slot) {
-        return h("div", {
-          "class": bem('input-wrapper')
-        }, [slot, Input]);
+        return h(
+          'div',
+          {
+            class: bem('input-wrapper'),
+          },
+          [slot, Input]
+        );
       }
 
       var style;
@@ -404,31 +464,54 @@ export default createComponent({
         var size = this.previewSizeWithUnit;
         style = {
           width: size,
-          height: size
+          height: size,
         };
       }
 
-      return h("div", {
-        "class": bem('upload'),
-        "style": style
-      }, [h(Icon, {
-        "attrs": {
-          "name": this.uploadIcon
+      return h(
+        'div',
+        {
+          class: bem('upload'),
+          style: style,
         },
-        "class": bem('upload-icon')
-      }), this.uploadText && h("span", {
-        "class": bem('upload-text')
-      }, [this.uploadText]), Input]);
-    }
+        [
+          h(Icon, {
+            attrs: {
+              name: this.uploadIcon,
+            },
+            class: bem('upload-icon'),
+          }),
+          this.uploadText &&
+            h(
+              'span',
+              {
+                class: bem('upload-text'),
+              },
+              [this.uploadText]
+            ),
+          Input,
+        ]
+      );
+    },
   },
   render: function render() {
     var h = arguments[0];
-    return h("div", {
-      "class": bem()
-    }, [h("div", {
-      "class": bem('wrapper', {
-        disabled: this.disabled
-      })
-    }, [this.genPreviewList(), this.genUpload()])]);
-  }
+    return h(
+      'div',
+      {
+        class: bem(),
+      },
+      [
+        h(
+          'div',
+          {
+            class: bem('wrapper', {
+              disabled: this.disabled,
+            }),
+          },
+          [this.genPreviewList(), this.genUpload()]
+        ),
+      ]
+    );
+  },
 });

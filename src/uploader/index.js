@@ -305,7 +305,11 @@ export default createComponent({
     },
 
     genPreviewItem(item, index) {
-      const showDelete = item.status !== 'uploading' && this.deletable && !item.hideDelete;
+      if (item.hideImg) {
+        return <div></div>;
+      }
+      const showDelete =
+        item.status !== 'uploading' && this.deletable && !item.hideDelete;
 
       const DeleteIcon = showDelete && (
         <Icon
